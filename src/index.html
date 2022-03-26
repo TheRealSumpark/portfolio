@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeJS Starter</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="content">
+            <h1 id="title">Ben Azizi Yassine</h1>
+            <p id="bio">Welcome to my realm</p>
+        </div>
+        <br>
+        <br>
+        <div class="menu" id="menu">
+
+            <div class="btn btn-one">Contact</div>
+            <div class="btn btn-one">Projects</div>
+            <div class="btn btn-one">Contact</div>
+
+        </div>
+
+    </div>
+    <canvas id="canvasContainer" class="webgl">
+
+
+    </canvas>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/CSSRulePlugin.min.js"
+        integrity="sha512-Aa3UvVB5yhH/dNXMt8nGZDD15Xmntq1ODcavfgT8omSLaomrJKYybWczzc6UJYDUAdqR1hmDJ47V4Ux50PPIuw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+        const content = CSSRulePlugin.getRule('.content:before');
+        const h1 = document.querySelector("#title");
+        const p = document.querySelector("#bio");
+        const menu = document.querySelector("#menu");
+
+        const tl = gsap.timeline();
+        tl.from(content, {
+            delay: .5,
+            duration: 1,
+            cssRule: {
+                scaleX: 0
+            }
+
+        })
+        tl.from(h1, {
+            duration: 1,
+            opacity: 0,
+
+        })
+
+
+        tl.from(p, {
+            duration: 1,
+            opacity: 0,
+
+        })
+
+        tl.from(menu, {
+            duration: 1,
+            opacity: 0
+        })
+    </script>
+
+</body>
+
+</html>
