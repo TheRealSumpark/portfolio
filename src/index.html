@@ -10,23 +10,25 @@
 
 <body>
 
-    <div class="container">
-
-        <div class="content">
+    <div class="container" id="">
+        <div class="content" id="bio_page">
             <h1 id="title">Ben Azizi Yassine</h1>
             <p id="bio">Welcome to my realm</p>
         </div>
         <br>
         <br>
         <div class="menu" id="menu">
-
-            <div class="btn btn-one">Contact</div>
+            <div class="btn btn-one" id="contactButton">Contact</div>
             <div class="btn btn-one">Projects</div>
             <div class="btn btn-one">Contact</div>
-
         </div>
+    </div>
+
+    <div class="container" id="projects_page">
+        <h1> Projets </h1>
 
     </div>
+
     <canvas id="canvasContainer" class="webgl">
 
 
@@ -49,6 +51,7 @@
         const h1 = document.querySelector("#title");
         const p = document.querySelector("#bio");
         const menu = document.querySelector("#menu");
+
 
         const tl = gsap.timeline();
         tl.from(content, {
@@ -77,7 +80,12 @@
             opacity: 0
         })
     </script>
-
+    <div class="footer-sound">
+        <span id="bar-1" class="sbar"></span>
+        <span id="bar-2" class="sbar"></span>
+        <span id="bar-3" class="sbar"></span>
+        <span id="bar-4" class="sbar"></span>
+    </div>
 </body>
 
 </html>
