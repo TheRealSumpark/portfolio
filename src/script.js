@@ -1,10 +1,13 @@
-import "./style.css";
 import * as THREE from "three";
 import * as dat from "dat.gui";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
 import { Howl, Howler } from "howler";
 import $ from "jquery";
 import gsap from "gsap";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./style.css";
+import github from "../assets/images/github.png";
 
 import {
   AdditiveBlending,
@@ -18,6 +21,12 @@ let renderer, camera, scene, torus, particlesMesh, controls, state;
 
 const canvasContainer = document.querySelector("#canvasContainer");
 function init() {
+  AOS.init({
+    offset: 120,
+    duration: 400,
+    mirror: true,
+    once: false,
+  });
   scene = new THREE.Scene();
 
   //TORUS
@@ -79,8 +88,7 @@ function init() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setClearColor(new THREE.Color(0x220828));
 
-  //camera controls
-  controls = new OrbitControls(camera, renderer.domElement);
+  $("#projects_page").hide();
 }
 
 function onWindowResize() {
@@ -122,8 +130,6 @@ const tick = () => {
 
   particlesMesh.rotation.y += 0.0001;
   particlesMesh.rotation.z += 0.0001;
-  // Update Orbital Controls
-  // controls.update()
 
   // Render
   renderer.render(scene, camera);
@@ -141,7 +147,6 @@ const tick = () => {
    *
    */
   state = "bio_page";
-  $("#projects_page").hide();
 };
 
 init();
@@ -151,39 +156,59 @@ var contactButton = document.getElementById("contactButton");
 contactButton.addEventListener("click", function (event) {
   const timeline = gsap.timeline();
 
-  timeline.to(particlesMesh.position, {
-    delay: 0.5,
-    z: -990,
-    duration: 3,
-    ease: Power2.easeOut,
-  });
-
-  timeline.to($("#projects_page:before"), {
-    zIndex: 1,
-    ease: Power3.easeIn,
-    display: "block",
-  });
-
-  gsap.to([$("#bio_page"), $("#menu")], {
+  timeline.to([$("#bio_page"), $("#menu")], {
     delay: 0.4,
     opacity: 0,
     display: "none",
     ease: Power3.easeIn,
     duration: 1,
+    onComplete() {
+      $("#menu").insertAfter($("#projects_title"));
+    },
   });
 
-  gsap.to(torus.position, {
-    z: 10,
-    duration: 1,
-    ease: Power2.easeIn,
+  timeline.to(
+    particlesMesh.position,
+    {
+      delay: 0.5,
+      z: -990,
+      duration: 3,
+      ease: Power2.easeOut,
+    },
+    0
+  );
+
+  timeline.to($("#projects_page"), {
+    zIndex: 1,
+    ease: Power3.easeIn,
+    display: "block",
+
+    onUpdate() {
+      $("#menu").fadeIn();
+      $("#menu").css("opacity", "1");
+    },
   });
 
-  gsap.to(camera.position, {
-    delay: 0.5,
-    z: -990,
-    duration: 3,
-    ease: Power2.easeOut,
-  });
+  timeline.to(
+    torus.position,
+    {
+      z: 10,
+      duration: 1,
+      ease: Power2.easeIn,
+    },
+    0
+  );
+
+  timeline.to(
+    camera.position,
+    {
+      delay: 0.5,
+      z: -990,
+      duration: 3,
+      ease: Power2.easeOut,
+    },
+    0
+  );
 
   //animate color when transitioning
   var color = renderer.getClearColor();
@@ -219,7 +244,7 @@ var sound = new Howl({
   name: "arpeggios_from_heaven",
 });
 
-sound.play(0);
+// sound.play(0);
 
 //global mute control
 const muteAll = function (ignoreGlobalSoundState) {

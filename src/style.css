@@ -2,13 +2,14 @@
 {
     margin: 0;
     padding: 0;
+  
 }
 
 html,
 body
 {
     height: 100vh;
-    font-family: 'Poppins';
+  font-family: 'Zen Maru Gothic',sans-serif;
     color: aliceblue;
    
 }
@@ -38,9 +39,8 @@ body
     width: 100%;
     padding-top: 3em;
     position:relative;
-    
-    
 }
+
 
 .content:before {
     content:'';
@@ -51,6 +51,88 @@ body
     border-bottom: 1px solid rgb(135, 84, 151);
     transform: scaleX(1);
 }
+
+/**
+* projects contents 
+*/
+.content-projects{
+  
+  display: grid;
+  gap : 6 em;
+  position: absolute;
+  margin-left: 10%;
+  margin-right: 10%;
+  top: 20rem;
+ 
+  
+}
+.content-projects>h1 {
+  
+  text-align: center;
+  width: 100%;
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+ 
+
+.list-projects{
+   border: solid 1px rgb(246, 60, 159);
+  align-items: center;
+
+}
+
+img{
+  width: 100%;
+}
+.list-item{
+  border: solid 1px rgb(38, 6, 41);
+  display: grid;
+  grid-template-columns: 2fr 1fr ;
+  grid-gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.list-item h3{
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  
+}
+.list-item img {
+  border: solid 1px rgb(38, 6, 41);
+  height: 400px;
+   
+}
+
+.list-item img :hover{
+  filter:grayscale(0);
+;
+}
+.list-item:hover{
+  filter: brightness(2);
+  cursor: pointer;
+}
+
+.list-item p{
+  text-align: start;
+  
+}
+
+.list-item > div {
+  border: solid 1px rgb(38, 6, 41);
+  padding : 2rem;
+  justify-content: center;
+  align-items: center;
+ 
+  
+}
+
+.list-item:nth-child(even) img {
+  order: 2;
+}
+
 
 h1 {
     font-size:  5rem;
@@ -81,6 +163,7 @@ h1,p{
     align-items: center;
     justify-content: center;
     margin-top: 2em;
+    margin-bottom: 4em;
     gap:2em;
 }
 
@@ -309,11 +392,16 @@ h1,p{
 /* end sound anmation */ 
 
 #projects_page {
-  display: none;
+  display: grid;
   z-index: -1000;
 }
 
 #projects_page:before{
 display: none;
 z-index: -1000;
+}
+
+
+.list{
+  display: block;
 }

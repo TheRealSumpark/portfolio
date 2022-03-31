@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThreeJS Starter</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -25,13 +27,65 @@
     </div>
 
     <div class="container" id="projects_page">
-        <h1> Projets </h1>
+        <div class="content-projects">
+            <h1 id="projects_title"> Projets </h1>
+            <div class="list-projects" data-aos="fade-up">
+                <section class="list-item" data-aos="fade-left" data-aos-delay="40" data-aos-easing="ease-in-out">
+                    <img src="/assets/images/github.jpg" alt="">
+                    <div>
+                        <h3>Projet 1</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Laudantium, tempora quaerat nemo unde fugit eveniet eum placeat
+                            reiciendis odio ea quibusdam repellendus magnam recusandae,
+                            expedita nostrum alias, deleniti consectetur quo.</p>
+                    </div>
+                </section>
+                <section class="list-item" data-aos="fade-right" data-aos-delay="40" data-aos-easing="ease-in-out">
+                    <img src="../assets/images/github.jpg" alt="">
+                    <div>
+                        <h3>Projet 2</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Laudantium, tempora quaerat nemo unde fugit eveniet eum placeat
+                            reiciendis odio ea quibusdam repellendus magnam recusandae,
+                            expedita nostrum alias, deleniti consectetur quo.</p>
+                    </div>
+                </section>
+                <section class="list-item" data-aos="fade-left" data-aos-delay="100" data-aos-easing="ease-in-out">
+                    <img src="../assets/images/github.jpg" alt="">
+                    <div>
+                        <h3>Projet 3</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Laudantium, tempora quaerat nemo unde fugit eveniet eum placeat
+                            reiciendis odio ea quibusdam repellendus magnam recusandae,
+                            expedita nostrum alias, deleniti consectetur quo.</p>
+                    </div>
+                </section>
+                <section class="list-item" data-aos="fade-right" data-aos-delay="100" data-aos-easing="ease-in-out">
+                    <img src="../assets/images/github.jpg" alt="">
+                    <div>
+                        <h3>Projet 4</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Laudantium, tempora quaerat nemo unde fugit eveniet eum placeat
+                            reiciendis odio ea quibusdam repellendus magnam recusandae,
+                            expedita nostrum alias, deleniti consectetur quo.</p>
+                    </div>
+                </section>
+                <section class="list-item" data-aos="fade-left" data-aos-delay="100" data-aos-easing="ease-in-out">
+                    <img src="../assets/images/github.jpg" alt="">
+                    <div>
+                        <h3>Projet 5</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Laudantium, tempora quaerat nemo unde fugit eveniet eum placeat
+                            reiciendis odio ea quibusdam repellendus magnam recusandae,
+                            expedita nostrum alias, deleniti consectetur quo.</p>
+                    </div>
+                </section>
 
+            </div>
+        </div>
     </div>
 
     <canvas id="canvasContainer" class="webgl">
-
-
     </canvas>
 
 
@@ -46,7 +100,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <script>
+    <!-- <script>
         const content = CSSRulePlugin.getRule('.content:before');
         const h1 = document.querySelector("#title");
         const p = document.querySelector("#bio");
@@ -79,13 +133,18 @@
             duration: 1,
             opacity: 0
         })
-    </script>
+    </script> -->
+
+
+
     <div class="footer-sound">
         <span id="bar-1" class="sbar"></span>
         <span id="bar-2" class="sbar"></span>
         <span id="bar-3" class="sbar"></span>
         <span id="bar-4" class="sbar"></span>
     </div>
+
+
 </body>
 
 </html>
