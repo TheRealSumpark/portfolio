@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./style.css";
 import github from "../assets/images/github.png";
+import VanillaTilt from "vanilla-tilt";
 
 import {
   AdditiveBlending,
@@ -17,12 +18,18 @@ import {
   SubtractiveBlending,
 } from "three";
 
-let renderer, camera, scene, torus, particlesMesh, controls, state;
+let renderer, camera, scene, torus, particlesMesh, state;
 
 const canvasContainer = document.querySelector("#canvasContainer");
 function init() {
+  $(".list-item").each(function () {
+    $(this).find("img").attr("src", github);
+  });
+
   AOS.init({
-    offset: 120,
+    useClassNames: true,
+    delay: 200,
+    offset: 480,
     duration: 400,
     mirror: true,
     once: false,
@@ -89,6 +96,7 @@ function init() {
   renderer.setClearColor(new THREE.Color(0x220828));
 
   $("#projects_page").hide();
+  transition();
 }
 
 function onWindowResize() {
@@ -149,11 +157,34 @@ const tick = () => {
   state = "bio_page";
 };
 
+/**
+ * Initialization
+ */
 init();
+initSound();
+initValinnaTilt();
 tick();
 
-var contactButton = document.getElementById("contactButton");
-contactButton.addEventListener("click", function (event) {
+/* end initialization */
+
+function initValinnaTilt() {
+  VanillaTilt.init(document.querySelectorAll(".tilt"), {
+    reverse: true,
+    max: 8,
+    scale: 1.04,
+    glare: true,
+    easing: "cubic-bezier(.03,.98,.52,.99)",
+    speed: 300,
+    "max-glare": 0.5,
+  });
+}
+
+var projectsButton = document.getElementById("projectsButton");
+projectsButton.addEventListener("click", function (event) {
+  transition();
+});
+
+function transition() {
   const timeline = gsap.timeline();
 
   timeline.to([$("#bio_page"), $("#menu")], {
@@ -223,88 +254,86 @@ contactButton.addEventListener("click", function (event) {
     },
   });
 
-  controls.update();
-
   console.log(particlesMesh.position);
-});
+}
 
 /**
  * Sound
  */
 
 // set up the site default sounds
+function initSound() {
+  let soundOn = true;
+  var sound = new Howl({
+    src: ["sounds/max_cooper_order_from_chaos.mp3"],
+    loop: true,
+    volume: 0.5,
+    html5: true,
 
-let soundOn = true;
-var sound = new Howl({
-  src: ["sounds/arpeggios_from_heaven.mp3"],
-  loop: true,
-  volume: 0.5,
-  html5: true,
-
-  name: "arpeggios_from_heaven",
-});
-
-// sound.play(0);
-
-//global mute control
-const muteAll = function (ignoreGlobalSoundState) {
-  console.log("mute all ");
-  $(".footer-sound .sbar").addClass("noAnim");
-  clearInterval(window.muteInterval);
-  var v = Howler.volume();
-  window.muteInterval = setInterval(function () {
-    v -= 0.1;
-    Howler.volume(v);
-    if (v <= 0.0) {
-      Howler.volume(0.0);
-      clearInterval(window.muteInterval);
-    }
-    //console.log("ticking");
-  }, 50);
-
-  //_this.analyser.minDecibels = -100;
-
-  // flag will
-  if (!ignoreGlobalSoundState) {
-    soundOn = false;
-  }
-};
-
-// global unmute control
-const unMuteAll = function (ignoreGlobalSoundState) {
-  console.log("unMute all ");
-  $(".footer-sound .sbar").removeClass("noAnim");
-  clearInterval(window.muteInterval);
-  var v = Howler.volume();
-  window.muteInterval = setInterval(function () {
-    v += 0.1;
-    Howler.volume(v);
-    if (v >= 1) {
-      Howler.volume(1);
-      clearInterval(window.muteInterval);
-    }
-    //console.log("ticking");
-  }, 50);
-
-  //_this.analyser.minDecibels = -60;
-
-  // flag will
-  if (!ignoreGlobalSoundState) {
-    soundOn = true;
-  }
-};
-
-$(".footer-sound").click(function (e) {
-  sound.play("arpeggios_from_heaven");
-
-  //_this.audio.playFromTo("click",0,1);
-  if (soundOn) {
+    name: "max_cooper_order_from_chaos",
+  });
+  //sound init
+  sound.play(0);
+  //global mute control
+  const muteAll = function (ignoreGlobalSoundState) {
+    console.log("mute all ");
     $(".footer-sound .sbar").addClass("noAnim");
-    soundOn = false;
-    muteAll();
-  } else {
+    clearInterval(window.muteInterval);
+    var v = Howler.volume();
+    window.muteInterval = setInterval(function () {
+      v -= 0.1;
+      Howler.volume(v);
+      if (v <= 0.0) {
+        Howler.volume(0.0);
+        clearInterval(window.muteInterval);
+      }
+      //console.log("ticking");
+    }, 50);
+
+    //_this.analyser.minDecibels = -100;
+
+    // flag will
+    if (!ignoreGlobalSoundState) {
+      soundOn = false;
+    }
+  };
+
+  // global unmute control
+  const unMuteAll = function (ignoreGlobalSoundState) {
+    console.log("unMute all ");
     $(".footer-sound .sbar").removeClass("noAnim");
-    soundOn = true;
-    unMuteAll();
-  }
-});
+    clearInterval(window.muteInterval);
+    var v = Howler.volume();
+    window.muteInterval = setInterval(function () {
+      v += 0.1;
+      Howler.volume(v);
+      if (v >= 1) {
+        Howler.volume(1);
+        clearInterval(window.muteInterval);
+      }
+      //console.log("ticking");
+    }, 50);
+
+    //_this.analyser.minDecibels = -60;
+
+    // flag will
+    if (!ignoreGlobalSoundState) {
+      soundOn = true;
+    }
+  };
+
+  $(".footer-sound").click(function (e) {
+    sound.play("max_cooper_order_from_chaos");
+
+    //_this.audio.playFromTo("click",0,1);
+    if (soundOn) {
+      $(".footer-sound .sbar").addClass("noAnim");
+      soundOn = false;
+      muteAll();
+    } else {
+      $(".footer-sound .sbar").removeClass("noAnim");
+      soundOn = true;
+      unMuteAll();
+    }
+  });
+}

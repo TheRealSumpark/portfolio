@@ -52,18 +52,25 @@ body
     transform: scaleX(1);
 }
 
+
+img{
+  width: 100%;
+}
+
+
 /**
 * projects contents 
 */
 .content-projects{
   
-  display: grid;
+  display: block;
   gap : 6 em;
-  position: absolute;
-  margin-left: 10%;
-  margin-right: 10%;
+  position: relative;
   top: 20rem;
- 
+  /* border: solid 1px green; */
+  justify-items:center ;
+  align-items: center;
+  
   
 }
 .content-projects>h1 {
@@ -71,68 +78,104 @@ body
   text-align: center;
   width: 100%;
   font-size: 6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 6rem;
   position: relative;
+  
+}
+
+/* .content-projects>h1::after{
+  content: "";
+  position:  absolute;
+  width: 50%;
+  border-bottom: 1px solid rgb(135, 84, 151);
+  bottom: 0;
+  left: 25%;
+
+  transform: scaleX(1);
+}
+  */
+
+.list-projects{
+  display: grid;
+  /* border: solid 1px rgb(246, 60, 159); */
+  align-items: center;
+  justify-items: center;
+  grid-gap: 6rem;
+  position: relative;
+  /* margin-left: 20%;
+  margin-right: 20%; */
+  margin-top: 10rem;
+  width: 60%;
+  left: 20%;
+
+ 
+}
+
+.tilt {
+  
+}
+
+
+
+
+.list-item{
+  /* border: solid 1px rgb(38, 6, 41); */
+  display: grid;
+  grid-gap: 6rem;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 2rem;
+  position: relative;
+  width: 70%;
+
+}
+
+.list-item > div{
+
+align-items: center;
+
+}
+
+
+.list-item > h3{
+ letter-spacing: 1px;
+  font-size: 2.4rem;
+   font-family: 'Zen Maru Gothic',sans-serif;
+    color: aliceblue;
+    text-align: center;
+}
+
+.list-item > p{
+
+   font-size: 1.3rem;
+  text-align: start;
+  font-family: 'Zen Maru Gothic',sans-serif;
+    color: aliceblue;
+    overflow: hidden;
 }
 
  
 
-.list-projects{
-   border: solid 1px rgb(246, 60, 159);
-  align-items: center;
 
-}
-
-img{
+ .list-item img {
+  /* border: solid 1px rgb(38, 6, 41); */
   width: 100%;
-}
-.list-item{
-  border: solid 1px rgb(38, 6, 41);
-  display: grid;
-  grid-template-columns: 2fr 1fr ;
-  grid-gap: 2rem;
-  margin-bottom: 2rem;
-}
+  height: 100%;
+  object-fit: cover;   
+} 
 
-.list-item h3{
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  
-}
-.list-item img {
-  border: solid 1px rgb(38, 6, 41);
-  height: 400px;
-   
-}
-
-.list-item img :hover{
-  filter:grayscale(0);
-;
-}
+ 
 .list-item:hover{
-  filter: brightness(2);
+  filter: brightness(3);
   cursor: pointer;
 }
 
-.list-item p{
-  text-align: start;
-  
-}
 
-.list-item > div {
-  border: solid 1px rgb(38, 6, 41);
-  padding : 2rem;
-  justify-content: center;
-  align-items: center;
- 
-  
-}
 
 .list-item:nth-child(even) img {
   order: 2;
 }
 
+/*********end projects contents********/
 
 h1 {
     font-size:  5rem;
@@ -145,7 +188,7 @@ h1 {
 
 p {
     font-size: 1.6rem;
-    width: 60vw;
+    /* width: 60vw; */
     text-align: right;
 }
 
@@ -391,17 +434,13 @@ h1,p{
 }
 /* end sound anmation */ 
 
-#projects_page {
+/* #projects_page {
   display: grid;
   z-index: -1000;
 }
-
-#projects_page:before{
-display: none;
-z-index: -1000;
-}
-
+ */
 
 .list{
   display: block;
 }
+

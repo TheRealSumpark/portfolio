@@ -48,7 +48,8 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: "assets/images/",
+              esModule: false,
+              // outputPath: "assets/images/",
             },
           },
         ],
@@ -65,6 +66,17 @@ module.exports = {
             },
           },
         ],
+      },
+
+      {
+        test: /\.hbs$/,
+        use: {
+          loader: "handlebars-loader",
+          options: {
+            // This option tells to to require the assest 👇
+            inlineRequires: "/assets/",
+          },
+        },
       },
     ],
   },
