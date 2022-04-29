@@ -12,6 +12,7 @@
 
 <body>
 
+    <!-- Begin Home Section -->
     <div class="container">
         <div class="content" id="home_page">
             <h1 id="title">Ben Azizi Yassine</h1>
@@ -24,8 +25,9 @@
             <div class="btn btn-one" id="bioButton">About me</div>
         </div>
     </div>
+    <!-- End Home Section -->
 
-
+    <!-- Begin Projects Section -->
     <div class="content-projects" id="projects_page">
         <h1 id="projects_title"> Projects </h1>
         <div class="list-projects">
@@ -35,7 +37,7 @@
                     <img alt="project_logo">
                     <div>
                         <h3>E-Portfolio</h3>
-                        <p>An E-Portfolio using THREE.js </p>
+                        <p>An e-Portfolio using THREE.js.</p>
                     </div>
                 </div>
             </section>
@@ -55,13 +57,13 @@
                     <div>
                         <h3>Sportify</h3>
                         <p>A QT managament application for sports clubs. Via the app, the user can do the inventory,
-                            schedule even stream matches.
+                            schedule and even stream matches.
                         </p>
                     </div>
                 </div>
             </section>
 
-            <section data-aos="fade-right" data-aos-easing="ease-in-out">
+            <section data-aos="fade-left" data-aos-easing="ease-in-out">
                 <div class="tilt list-item"
                     onclick="window.open('https://github.com/TheRealSumpark/SDL_Project','_blank')">
                     <img alt="project_logo">
@@ -72,7 +74,7 @@
                 </div>
             </section>
 
-            <section data-aos="fade-left" data-aos-easing="ease-in-out">
+            <section data-aos="fade-right" data-aos-easing="ease-in-out">
                 <div class="tilt list-item"
                     onclick="window.open('https://github.com/TheRealSumpark/SimpleArduinoIntegrator','_blank')">
                     <img alt="">
@@ -84,25 +86,30 @@
             </section>
         </div>
     </div>
+    <!-- End Projects Section -->
 
+
+    <!-- Begin Bio Section -->
     <div class="content-bio" id="bio_page">
 
         <h1 id="bio_title">About me</h1>
 
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia tempore sapiente provident quidem
-            sint impedit, eius optio numquam maxime, mollitia ipsum dolor excepturi culpa at omnis consequuntur, nihil
-            harum facere!</p>
-
-
+        <p>My name is <strong>Yassine</strong> and i'm a 23 years old computer engineering student.
+            Hacking has always fascinated me, and i aspire to be an impactful figure in the <strong>Cyber Security
+            </strong>field.
+            <br>
+            <br>
+            I love <strong>coffee</strong>, <strong>pastries</strong> and making <strong>music</strong>.
+        </p>
     </div>
-
+    <!-- End Bio Section -->
     <canvas id="canvasContainer" class="webgl">
     </canvas>
 
 
 
 
-
+    <!-- Begin Animating Home Section -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
         integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -110,10 +117,10 @@
         integrity="sha512-Aa3UvVB5yhH/dNXMt8nGZDD15Xmntq1ODcavfgT8omSLaomrJKYybWczzc6UJYDUAdqR1hmDJ47V4Ux50PPIuw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- <script>
+    <script>
         const content = CSSRulePlugin.getRule('.content:before');
         const h1 = document.querySelector("#title");
-        const p = document.querySelector("#bio");
+        const p = document.querySelector("#subtitle");
         const menu = document.querySelector("#menu");
 
 
@@ -143,19 +150,20 @@
             duration: 1,
             opacity: 0
         })
-    </script> -->
+    </script>
 
+    <!-- End Animating Home Section -->
 
-
+    <!-- Begin Sound Icon  -->
     <div class="footer-sound">
         <span id="bar-1" class="sbar"></span>
         <span id="bar-2" class="sbar"></span>
         <span id="bar-3" class="sbar"></span>
         <span id="bar-4" class="sbar"></span>
     </div>
+    <!-- End Sound Icon  -->
 
-
-
+    <!--Begin Contacts Menu-->
     <div class="icons-fixed">
         <ul>
             <li>
@@ -188,7 +196,7 @@
         </ul>
 
     </div>
-
+    <!--End Contacts Menu-->
 
 </body>
 

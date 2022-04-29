@@ -6,24 +6,15 @@ import gsap from "gsap";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./style.css";
-import github from "../assets/images/github.png";
+import github from "../assets/icons/github.svg";
 import VanillaTilt from "vanilla-tilt";
 import { initSound } from "./sound";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MeshSurfaceSampler } from "three/examples/jsm/math/MeshSurfaceSampler";
-
-import {
-  AdditiveBlending,
-  Mesh,
-  MeshBasicMaterial,
-  MultiplyBlending,
-  NormalBlending,
-  SubtractiveBlending,
-} from "three";
-import Aos from "aos";
-
+import { NormalBlending } from "three";
 let renderer, camera, scene, torus, particlesMesh, state, sphere;
 
+/**
+ * Setting camera positions used for navigation between sections
+ */
 let camera_position_home = new THREE.Vector3(0, 0, 2);
 let camera_position_projects = new THREE.Vector3(0, 0, -990);
 let camera_position_contacts = new THREE.Vector3(3, 5, -1100);
@@ -31,7 +22,7 @@ let camera_position_contacts = new THREE.Vector3(3, 5, -1100);
 const canvasContainer = document.querySelector("#canvasContainer");
 function init() {
   /**
-   * state used for navigation
+   * states used for navigation
    *
    * states :
    * home_page
@@ -41,26 +32,30 @@ function init() {
    */
   state = "home_page";
 
+  // initializing projects icons
   $(".list-item").each(function () {
     $(this).find("img").attr("src", github);
   });
 
-  scene = new THREE.Scene();
-
-  //TORUS
-  const geometry = new THREE.TorusGeometry(0.9, 0.2, 16, 110);
-  const material = new THREE.PointsMaterial({
+  /**
+   *  Creating Torus
+   */
+  const torus_geometry = new THREE.TorusGeometry(0.9, 0.2, 16, 110);
+  const torus_material = new THREE.PointsMaterial({
     size: 0.005,
-    color: 0xafffff,
+    color: 0xffffff,
   });
 
-  torus = new THREE.Points(geometry, material);
+  torus = new THREE.Points(torus_geometry, torus_material);
   torus.position.set(1, 0, camera_position_projects.z - 1);
-  scene.add(torus);
+  /******  End Creating Torus*/
 
-  // SCPHERE
+  /**
+   *
+   *  Creating Sphere
+   *
+   * */
   const sphere_geometry = new THREE.SphereGeometry();
-
   const sphere_material = new THREE.LineBasicMaterial({
     color: 0xafffff,
     linewidth: 2,
@@ -71,19 +66,19 @@ function init() {
   sphere = new THREE.Line(sphere_geometry, sphere_material);
   sphere.position.z = camera_position_contacts.z - 1;
   sphere.position.x = 2;
-  scene.add(sphere);
+  /**** End Creating Sphere*/
 
-  //PARTICLES
+  /**
+   * Creating Particles
+   *  */
   const particlesGeometry = new THREE.BufferGeometry();
   const particlesCount = 6000;
 
   const posArray = new Float32Array(particlesCount * 3);
-
+  //random positions for each particle
   for (let i = 0; i < particlesCount * 3; i++) {
     posArray[i] = (Math.random() - 0.5) * 13;
   }
-
-  console.log(posArray);
 
   particlesGeometry.setAttribute(
     "position",
@@ -98,13 +93,28 @@ function init() {
 
   particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 
-  scene.add(particlesMesh);
+  /*** End Creating Particles ***/
 
-  //LIGHT
+  /**
+   * Creating scene and adding objects to it
+   *
+   * */
+  scene = new THREE.Scene();
+  scene.add(torus);
+  scene.add(sphere);
+  scene.add(particlesMesh);
+  /** End creating Scene ***/
+
+  /**
+   * Creating Light Source
+   * */
   const pointLight = new THREE.PointLight(0xffffff, 1);
   pointLight.position.set(0, 0, 100);
+  /**  End light ***/
 
-  //camera
+  /**
+   * Creating Camera
+   */
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -113,25 +123,39 @@ function init() {
   );
   camera.position.z = camera_position_home.z;
 
+  /** End Creating Camera **/
+
+  /**
+   * Creating Renderer
+   */
   renderer = new THREE.WebGLRenderer({
     antialias: true,
     canvas: canvasContainer,
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setClearColor(new THREE.Color(0x220828));
+  renderer.setClearColor(new THREE.Color(0x220828)); // background colour
 
+  /** End Creating Renderer */
+
+  /**
+   * Sections initialization
+   */
   $("#projects_page").hide();
   $("#projects_page").css({ opacity: 0 });
   $("#bio_page").hide();
   $("#bio_page").css({ opacity: 0 });
+
+  // assigning actions to menu buttons
   $("#homeButton").on("click", (event) => goToHome());
   $("#projectsButton").on("click", (event) => goToProjects());
   $("#bioButton").on("click", (event) => goToBio());
-
-  // initImage();
 }
+/** End Sections initialization */
 
+/**
+ * Handling webgl render zone when resizing
+ */
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
 
@@ -139,10 +163,12 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 }
 window.addEventListener("resize", onWindowResize, false);
+/** End  */
 
 /**
  *
  * Mouse
+ * Moving particles when mouse moves
  */
 
 document.addEventListener("mousemove", animateParticles);
@@ -155,9 +181,11 @@ function animateParticles(event) {
   mouse.x = event.clientX - windowX;
   mouse.y = event.clientY - windowY;
 }
+/** End Mouse  */
 
 /**
  * Animate
+ * Animation Loop
  */
 
 const tick = () => {
@@ -181,6 +209,7 @@ const tick = () => {
   // Call tick again on the next frame
   window.requestAnimationFrame(tick);
 };
+/** End Animate */
 
 /**
  * Initialization
@@ -188,10 +217,13 @@ const tick = () => {
 initVanillaTilt();
 initAos();
 init();
-// initSound();
+initSound();
 tick();
 /* end initialization */
 
+/**
+ * Initializing AOS Library
+ */
 function initAos() {
   AOS.init({
     useClassNames: true,
@@ -206,6 +238,11 @@ function initAos() {
     AOS.refresh();
   });
 }
+/**End AOS init */
+
+/**
+ * Initializing Tilt Library
+ */
 function initVanillaTilt() {
   VanillaTilt.init(document.querySelectorAll(".tilt"), {
     reverse: true,
@@ -217,11 +254,16 @@ function initVanillaTilt() {
     "max-glare": 0.5,
   });
 }
+/**End Tilt init */
 
+/**
+ * Begin Navigation
+ */
 function goToHome() {
   if (state == "home_page") return;
   const timeline = gsap.timeline();
 
+  // if coming from projects section, hide projects section
   if (state == "projects_page") {
     timeline.to([$("#projects_page"), $("#menu")], {
       delay: 0.4,
@@ -234,6 +276,7 @@ function goToHome() {
       },
     });
   } else if (state == "bio_page") {
+    // if coming from bio section, hide bio section
     timeline.to([$("#bio_page"), $("#menu")], {
       delay: 0.4,
       opacity: 0,
@@ -270,9 +313,9 @@ function goToHome() {
   //animate color when transitioning
   var color = renderer.getClearColor();
   gsap.to(color, {
-    r: 0,
-    g: 0,
-    b: 0,
+    r: 0.133,
+    g: 0.031,
+    b: 0.157,
     duration: 2,
     ease: Power2.easeIn,
     onUpdate() {
@@ -280,6 +323,7 @@ function goToHome() {
     },
   });
 
+  //reveal home section
   timeline.to($("#home_page"), {
     zIndex: 1,
     duration: 1,
@@ -287,11 +331,12 @@ function goToHome() {
     display: "block",
     opacity: 1,
     onUpdate() {
+      // show menu
       $("#menu").fadeIn(12);
       $("#menu").css("opacity", "1");
     },
   });
-  console.log("PARTICLES", particlesMesh.position);
+
   state = "home_page";
 }
 
@@ -329,17 +374,28 @@ function goToBio() {
       delay: 0.5,
       z: camera_position_contacts.z + 2,
       duration: 3,
-      ease: Power2.easeOut,
+      ease: Power2.easeInOut,
     },
     0
   );
+  var color = renderer.getClearColor();
+  gsap.to(color, {
+    r: 0.031,
+    g: 0.063,
+    b: 0.098,
+    duration: 2,
+    ease: Power2.easeIn,
+    onUpdate() {
+      renderer.setClearColor(color);
+    },
+  });
   timeline.to(
     camera.position,
     {
       delay: 0.5,
       z: camera_position_contacts.z,
       duration: 3,
-      ease: Power2.easeOut,
+      ease: Power2.easeInOut,
     },
     0
   );
@@ -355,8 +411,7 @@ function goToBio() {
       $("#menu").css("opacity", "1");
     },
   });
-  console.log("camera_position", camera.position);
-  console.log("PARTICLES", particlesMesh.position);
+
   state = "bio_page";
 }
 
@@ -413,9 +468,9 @@ function goToProjects() {
   //animate color when transitioning
   var color = renderer.getClearColor();
   gsap.to(color, {
-    r: 0,
-    g: 0,
-    b: 0,
+    r: 0.071,
+    g: 0.043,
+    b: 0.114,
     duration: 2,
     ease: Power2.easeIn,
     onUpdate() {
@@ -435,90 +490,8 @@ function goToProjects() {
     },
   });
 
-  console.log("PARTICLES", particlesMesh.position);
-
   state = "projects_page";
   $(".list-item").removeClass("aos-animate");
 }
 
-function initImage() {
-  const group = new THREE.Group();
-  group.position.set(0, -6, -10);
-  scene.add(group);
-  let sampler = null;
-
-  let paths = [];
-  new OBJLoader().load(
-    "Alien.obj",
-    (obj) => {
-      sampler = new MeshSurfaceSampler(obj.children[0]).build();
-      for (let i = 0; i < 4; i++) {
-        const path = new Path(i);
-        paths.push(path);
-        group.add(path.line);
-      }
-
-      renderer.setAnimationLoop(render);
-    },
-    (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
-    (err) => console.error(err)
-  );
-
-  const tempPosition = new THREE.Vector3();
-  const materials = [
-    new THREE.LineBasicMaterial({
-      color: 0xfaad80,
-      transparent: true,
-      opacity: 0.5,
-    }),
-    new THREE.LineBasicMaterial({
-      color: 0xff6767,
-      transparent: true,
-      opacity: 0.5,
-    }),
-    new THREE.LineBasicMaterial({
-      color: 0xff3d68,
-      transparent: true,
-      opacity: 0.5,
-    }),
-    new THREE.LineBasicMaterial({
-      color: 0xa73489,
-      transparent: true,
-      opacity: 0.5,
-    }),
-  ];
-  class Path {
-    constructor(index) {
-      this.geometry = new THREE.BufferGeometry();
-      this.material = materials[index % 4];
-      this.line = new THREE.Line(this.geometry, this.material);
-      this.vertices = [];
-
-      sampler.sample(tempPosition);
-      this.previousPoint = tempPosition.clone();
-    }
-    update() {
-      let pointFound = false;
-      while (!pointFound) {
-        sampler.sample(tempPosition);
-        if (tempPosition.distanceTo(this.previousPoint) < 30) {
-          this.vertices.push(tempPosition.x, tempPosition.y, tempPosition.z);
-          this.previousPoint = tempPosition.clone();
-          pointFound = true;
-        }
-      }
-      this.geometry.setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(this.vertices, 3)
-      );
-    }
-  }
-
-  function render(a) {
-    paths.forEach((path) => {
-      if (path.vertices.length < 1000) {
-        path.update();
-      }
-    });
-  }
-}
+/** End Navigation  */

@@ -8,12 +8,12 @@ import $ from "jquery";
 export function initSound() {
   let soundOn = true;
   var sound = new Howl({
-    src: ["sounds/max_cooper_order_from_chaos.mp3"],
+    src: ["sounds/blurred_oceans.mp3"],
     loop: true,
     volume: 0.5,
     html5: true,
 
-    name: "max_cooper_order_from_chaos",
+    name: "blurred_oceans",
   });
   //sound init
   sound.play(0);
@@ -32,8 +32,6 @@ export function initSound() {
       }
       //console.log("ticking");
     }, 50);
-
-    //_this.analyser.minDecibels = -100;
 
     // flag will
     if (!ignoreGlobalSoundState) {
@@ -54,21 +52,16 @@ export function initSound() {
         Howler.volume(1);
         clearInterval(window.muteInterval);
       }
-      //console.log("ticking");
     }, 50);
 
-    //_this.analyser.minDecibels = -60;
-
-    // flag will
     if (!ignoreGlobalSoundState) {
       soundOn = true;
     }
   };
 
   $(".footer-sound").click(function (e) {
-    sound.play("max_cooper_order_from_chaos");
+    sound.play("blurred_oceans");
 
-    //_this.audio.playFromTo("click",0,1);
     if (soundOn) {
       $(".footer-sound .sbar").addClass("noAnim");
       soundOn = false;

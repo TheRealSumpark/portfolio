@@ -1,8 +1,10 @@
 {
   "repository": "#",
   "license": "UNLICENSED",
+  "name": "ben_azizi_yassine",
+
   "scripts": {
-    "start": "webpack serve",
+
     "build": "webpack --config ./bundler/webpack.prod.js",
     "dev": "webpack serve --config ./bundler/webpack.dev.js"
   },
