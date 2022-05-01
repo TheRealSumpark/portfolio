@@ -6,17 +6,18 @@ import $ from "jquery";
 
 // set up the site default sounds
 export function initSound() {
-  let soundOn = true;
-  var sound = new Howl({
+  let sound;
+  //sound init
+  sound = new Howl({
     src: ["sounds/blurred_oceans.mp3"],
     loop: true,
     volume: 0.5,
     html5: true,
-
+    autoplay: true,
     name: "blurred_oceans",
   });
-  //sound init
-  sound.play(0);
+
+  let soundOn = true;
   //global mute control
   const muteAll = function (ignoreGlobalSoundState) {
     console.log("mute all ");
@@ -60,16 +61,17 @@ export function initSound() {
   };
 
   $(".footer-sound").click(function (e) {
-    sound.play("blurred_oceans");
-
     if (soundOn) {
       $(".footer-sound .sbar").addClass("noAnim");
       soundOn = false;
+
       muteAll();
     } else {
       $(".footer-sound .sbar").removeClass("noAnim");
       soundOn = true;
+
       unMuteAll();
     }
   });
+  sound.play();
 }

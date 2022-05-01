@@ -191,6 +191,7 @@ p {
   top: 15rem;
   justify-items: center;
   align-items: center;
+  overflow-x: auto;
 }
 
 .content-bio>h1 {
@@ -207,6 +208,7 @@ p {
   justify-content: center;
   margin-left: 30%;
   margin-right: 30%;
+  margin-bottom: 30px;
 }
 
 /** End Bio Contents ******/
