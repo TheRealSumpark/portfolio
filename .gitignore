@@ -1,4 +1,43 @@
+# Dependencies, generated output, and local tools
 node_modules/
 dist/
 .tools/
+.cache/
+coverage/
 __pycache__/
+*.py[cod]
+/scripts/preview.py
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.npmrc
+.pypirc
+.vscode/
+.idea/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Private originals, backups, and logs
+*.pdf
+*.log
+*.bak
+*.backup
+*.bundle
+*.db
+*.sqlite*
+/backups/
+.DS_Store
+Thumbs.db
+
+# Legacy generated files; webpack now writes to dist/
+/bundle.*
+/main.css*
+/index.html
+/104151c0b473ecfa1cf7192ad04c6930.svg
+/sounds/

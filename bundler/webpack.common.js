@@ -14,7 +14,16 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: path.resolve(__dirname, "../static") },
+        {
+          from: "*.png",
+          context: path.resolve(__dirname, "../static/certifications"),
+          to: "certifications/",
+        },
+        {
+          from: "*.mp3",
+          context: path.resolve(__dirname, "../static/sounds"),
+          to: "sounds/",
+        },
       ],
     }),
     new HtmlWebpackPlugin({
