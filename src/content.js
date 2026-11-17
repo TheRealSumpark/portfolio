@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Ben Azizi Yassine',
   role: 'Cybersecurity engineer',
-  email: 'yassine.benazizi@epfedu.fr',
+  email: 'b.a.yassine.perso@gmail.com',
   github: 'https://github.com/TheRealSumpark',
   linkedin: 'https://www.linkedin.com/in/yassine-ben-azizi/',
 };
