@@ -4,8 +4,9 @@ import { initScene } from './scene.js';
 import { initSound } from './sound.js';
 import { renderCertifications } from './certifications.js';
 import { createPageNavigation } from './navigation.mjs';
+import { initCV } from './cv.mjs';
 
-const routeLabels = { home: 'Home', projects: 'Projects', certifications: 'Certifications', about: 'About', contact: 'Contact' };
+const routeLabels = { home: 'Home', projects: 'Projects', certifications: 'Certifications', about: 'About', cv: 'CV', contact: 'Contact' };
 
 function renderProjects() {
   const grid = document.querySelector('#projects-grid');
@@ -56,6 +57,7 @@ document.querySelectorAll('[data-profile]').forEach(element => {
 document.querySelector('#year').textContent = new Date().getFullYear();
 renderProjects();
 renderCertifications(certifications);
+initCV(profile);
 initSound();
 const scene = initScene(document.querySelector('#canvasContainer'));
 let currentRoute;

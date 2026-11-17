@@ -21,6 +21,7 @@
       <a href="#projects" data-route="projects">Projects</a>
       <a href="#certifications" data-route="certifications">Certifications</a>
       <a href="#about" data-route="about">About</a>
+      <a href="#cv" data-route="cv">CV</a>
       <a href="#contact" data-route="contact">Contact <span aria-hidden="true">↗</span></a>
     </nav>
     <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Play ambient sound" aria-pressed="false">
@@ -48,12 +49,13 @@
           <span class="orbit-coordinate coordinate-bottom">SECURITY · CODE · CURIOSITY</span>
         </div>
       </div>
-      <div class="destination-heading"><p class="eyebrow">Choose your destination</p><span>Four worlds. One journey.</span></div>
+      <div class="destination-heading"><p class="eyebrow">Choose your destination</p><span>Five worlds. One journey.</span></div>
       <div class="destination-grid">
         <a class="destination" href="#projects"><span class="mini-planet planet-projects" aria-hidden="true"></span><span><small>01 / BUILD</small><strong>Projects</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
         <a class="destination" href="#certifications"><span class="mini-planet planet-certifications" aria-hidden="true"></span><span><small>02 / LEARN</small><strong>Certifications</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
         <a class="destination" href="#about"><span class="mini-planet planet-about" aria-hidden="true"></span><span><small>03 / DISCOVER</small><strong>About me</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
-        <a class="destination" href="#contact"><span class="mini-planet planet-contact" aria-hidden="true"></span><span><small>04 / CONNECT</small><strong>Get in touch</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
+        <a class="destination" href="#cv"><span class="mini-planet planet-cv" aria-hidden="true"></span><span><small>04 / EXPERIENCE</small><strong>My CV</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
+        <a class="destination" href="#contact"><span class="mini-planet planet-contact" aria-hidden="true"></span><span><small>05 / CONNECT</small><strong>Get in touch</strong></span><span class="destination-arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -107,8 +109,23 @@
       </div>
     </section>
 
+    <section class="page inner-page cv-page" id="cv" lang="en" aria-labelledby="cv-title" hidden>
+      <div class="cv-toolbar">
+        <div class="page-heading">
+          <p class="eyebrow" id="cv-eyebrow">04 / Experience in orbit</p>
+          <h1 id="cv-title" tabindex="-1"><span id="cv-title-prefix">My</span> CV.</h1>
+          <p id="cv-introduction">My experience, skills, and the things I’ve learned along the way.</p>
+        </div>
+        <button class="cv-language-toggle" id="cv-language-toggle" type="button" lang="fr" aria-label="Lire le CV en français" aria-controls="cv-content">
+          <span aria-hidden="true">⇄</span><span id="cv-language-label">Français</span>
+        </button>
+      </div>
+      <article class="cv-sheet" id="cv-content" aria-labelledby="cv-name"></article>
+      <p class="sr-only" id="cv-language-status" role="status"></p>
+    </section>
+
     <section class="page inner-page" id="contact" aria-labelledby="contact-title" hidden>
-      <div class="page-heading"><p class="eyebrow">04 / Open a channel</p><h1 id="contact-title" tabindex="-1">Let’s make <span>contact.</span></h1><p>Have a project in mind, a security question, or something interesting to share? I’d love to hear from you.</p></div>
+      <div class="page-heading"><p class="eyebrow">05 / Open a channel</p><h1 id="contact-title" tabindex="-1">Let’s make <span>contact.</span></h1><p>Have a project in mind, a security question, or something interesting to share? I’d love to hear from you.</p></div>
       <div class="contact-grid">
         <a class="glass-card contact-card" data-profile-link="email"><span class="contact-symbol" aria-hidden="true">@</span><span class="card-index">DIRECT CHANNEL</span><h2>Email me</h2><p data-profile="email"></p><span class="text-link">Say hello <span aria-hidden="true">↗</span></span></a>
         <a class="glass-card contact-card" data-profile-link="linkedin" target="_blank" rel="noopener noreferrer"><span class="contact-symbol" aria-hidden="true">in</span><span class="card-index">PROFESSIONAL ORBIT</span><h2>LinkedIn</h2><p>Connect and keep the conversation going.</p><span class="text-link">View profile <span aria-hidden="true">↗</span></span></a>

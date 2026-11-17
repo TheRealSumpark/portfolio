@@ -6,7 +6,8 @@ const destinations = {
   projects: { z: -22, color: '#1d102e' },
   certifications: { z: -44, color: '#281925' },
   about: { z: -66, color: '#0e202b' },
-  contact: { z: -88, color: '#22112e' },
+  cv: { z: -88, color: '#151b32' },
+  contact: { z: -110, color: '#22112e' },
 };
 
 export function initScene(canvas) {
@@ -82,6 +83,12 @@ export function initScene(canvas) {
   goldRing.rotation.set(1.12, .35, -.3);
   planets.certifications.add(goldRing);
   planets.about.add(wireSphere('#9adfe0'));
+  planets.cv.add(wireSphere('#adbff5', .95));
+  for (let i = 0; i < 2; i++) {
+    const orbit = ring('#adbff5', 1.5 + i * .2, .009);
+    orbit.rotation.set(1.1, i * 1.2, -.35);
+    planets.cv.add(orbit);
+  }
   const contactCore = wireSphere('#c09cdd', .8);
   planets.contact.add(contactCore);
   for (let i = 0; i < 3; i++) {
