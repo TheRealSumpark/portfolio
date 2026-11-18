@@ -53,7 +53,13 @@ export function initCV(profile, root = document) {
       link('LinkedIn ↗', profile.linkedin, true),
       link('Hack The Box ↗', 'https://profile.hackthebox.com/profile/019db950-fbc3-702c-8b11-3ec8312c9141', true),
     );
-    header.append(element('p', 'eyebrow', 'Curriculum vitae'), name, element('p', 'cv-role', copy.role), contacts);
+    header.append(
+      element('p', 'eyebrow', 'Curriculum vitae'),
+      name,
+      element('p', 'cv-role', copy.role),
+      element('p', 'cv-summary', copy.profile),
+      contacts,
+    );
 
     const layout = element('div', 'cv-layout');
     const main = element('div', 'cv-main');
@@ -77,18 +83,6 @@ export function initCV(profile, root = document) {
     });
     main.append(experience, education);
 
-    const certifications = section('certifications', copy.sections.certifications);
-    const credentials = element('ul', 'cv-credentials');
-    copy.credentials.forEach(item => {
-      const entry = element('li');
-      entry.append(element('span', '', item.name), element('time', 'cv-date', item.year));
-      entry.lastElementChild.dateTime = item.year;
-      credentials.append(entry);
-    });
-    const credentialLink = link(`${copy.credentialLink} ↗`, '#certifications');
-    credentialLink.className = 'text-link cv-certifications-link';
-    certifications.append(credentials, credentialLink);
-
     const skills = section('technologies', copy.sections.technologies);
     const groups = element('dl', 'cv-skills');
     copy.technologies.forEach((items, index) => {
@@ -102,7 +96,7 @@ export function initCV(profile, root = document) {
     const languageList = element('ul', 'cv-languages');
     copy.languages.forEach(text => languageList.append(element('li', '', text)));
     languages.append(languageList);
-    sidebar.append(certifications, skills, languages);
+    sidebar.append(skills, languages);
     layout.append(main, sidebar);
     content.replaceChildren(header, layout);
     if (announce) root.querySelector('#cv-language-status').textContent = copy.announcement;

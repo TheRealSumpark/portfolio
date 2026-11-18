@@ -290,6 +290,7 @@ body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-are
 .cv-header > .eyebrow { color: #b2bce0; font-size: 9px; }
 .cv-header h2 { margin-top: 12px; font: 400 clamp(29px, 4vw, 42px)/1.2 'Zen Maru Gothic', sans-serif; letter-spacing: -.035em; }
 .cv-role { margin: 8px 0 21px; color: #d5c4e5; font-size: 16px; }
+.cv-summary { max-width: 860px; margin: 0 0 23px; color: #d2c9df; font-size: 13px; line-height: 1.85; }
 .cv-contacts { display: flex; align-items: center; flex-wrap: wrap; gap: 9px 22px; font-size: 11px; color: #c1b5d0; }
 .cv-contacts a { overflow-wrap: anywhere; text-decoration: underline; text-decoration-color: #adbff544; text-underline-offset: 4px; }
 .cv-contacts a:hover { color: var(--text); text-decoration-color: #adbff5; }
@@ -307,23 +308,32 @@ body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-are
 .cv-entry-heading .cv-date { margin-left: auto; }
 .cv-employer { margin-top: 5px; color: #d5c4e5; font-size: 12px; }
 .cv-highlights { margin: 20px 0 0; padding-left: 17px; color: #c2b5cd; font-size: 13px; line-height: 1.85; }
-.cv-highlights li { padding-left: 5px; }
+.cv-highlights li { padding: 4px 7px; margin-left: -7px; border-radius: 5px; transition: color .2s, text-shadow .2s, background-color .2s, box-shadow .2s; }
 .cv-highlights li + li { margin-top: 12px; }
 .cv-highlights li::marker { color: #adbff599; font-size: 10px; }
-.cv-education-entry + .cv-education-entry { margin-top: 25px; }
+.cv-education-entry { margin-inline: -8px; padding: 8px; border-radius: 5px; transition: color .2s, text-shadow .2s, background-color .2s, box-shadow .2s; }
+.cv-education-entry + .cv-education-entry { margin-top: 17px; }
 .cv-education-entry > .cv-date { margin-bottom: 5px; }
 .cv-degree-detail, .cv-school { margin-top: 5px; font-size: 12px; }
 .cv-degree-detail { color: #d5c4e5; }
-.cv-credentials, .cv-languages { padding: 0; margin: 0; list-style: none; }
-.cv-credentials li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 13px; padding: 11px 0; font-size: 12px; line-height: 1.65; border-bottom: 1px solid #adbff515; }
-.cv-credentials li:first-child { padding-top: 0; }
-.cv-certifications-link { margin-top: 18px; font-size: 11px; line-height: 1.7; }
+.cv-languages { padding: 0; margin: 0; list-style: none; }
 .cv-skills { margin: 0; }
-.cv-skills > div + div { margin-top: 20px; }
+.cv-skills > div { margin-inline: -8px; padding: 7px 8px; border-radius: 5px; transition: color .2s, text-shadow .2s, background-color .2s, box-shadow .2s; }
+.cv-skills > div + div { margin-top: 6px; }
 .cv-skills dt { font-size: 12px; color: #e5dbea; }
 .cv-skills dd { margin: 6px 0 0; font-size: 12px; line-height: 1.9; color: #bfb2cc; }
 .cv-languages { display: flex; gap: 9px; flex-wrap: wrap; }
-.cv-languages li { border: 1px solid #adbff52b; background: #adbff507; border-radius: 5px; padding: 6px 10px; color: #ccc0dc; font-size: 11px; }
+.cv-languages li { border: 1px solid #adbff52b; background: #adbff507; border-radius: 5px; padding: 6px 10px; color: #ccc0dc; font-size: 11px; transition: color .2s, text-shadow .2s, background-color .2s, box-shadow .2s; }
+.cv-header h2, .cv-role, .cv-summary, .cv-contacts > *, .cv-entry-heading, .cv-employer, .cv-section > h3 { border-radius: 5px; transition: color .2s, text-shadow .2s, background-color .2s, box-shadow .2s; }
+@media (any-hover: hover) {
+  .cv-highlights li:hover, .cv-education-entry:hover, .cv-skills > div:hover, .cv-languages li:hover,
+  .cv-header h2:hover, .cv-role:hover, .cv-summary:hover, .cv-contacts > :hover,
+  .cv-entry-heading:hover, .cv-employer:hover, .cv-section > h3:hover,
+  .cv-section > h3:focus-visible { color: #fff; text-shadow: 0 0 8px #fff9, 0 0 20px #fff5; background: #fff1; box-shadow: 0 0 20px #fff1; }
+  .cv-entry-heading:hover .cv-date, .cv-education-entry:hover .cv-date,
+  .cv-education-entry:hover .cv-degree-detail, .cv-education-entry:hover .cv-school,
+  .cv-skills > div:hover dd, .cv-contacts > :hover { color: #fff; }
+}
 @media (max-width: 1000px) {
   .cv-main, .cv-sidebar { padding: 28px; }
   .cv-header { padding-inline: 28px; }
@@ -344,6 +354,7 @@ body { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-are
   .cv-header, .cv-main, .cv-sidebar { padding: 24px 21px; }
   .cv-sidebar { grid-template-columns: minmax(0, 1fr); }
   .cv-contacts { gap: 12px 18px; }
+  .cv-summary { font-size: 13px; line-height: 1.9; }
   .cv-highlights { font-size: 13px; line-height: 1.9; }
   .cv-section > h3 { margin-bottom: 18px; }
 }

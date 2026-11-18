@@ -76,7 +76,7 @@ test('language button switches the entire CV both ways without replacing the con
   toggle.click();
   assert.equal(root.querySelector('#cv').lang, 'fr');
   assert.equal(root.querySelector('#cv-title-prefix').textContent, 'Mon');
-  assert.match(root.querySelector('#cv-content').textContent, /Ingénieur cybersécurité/);
+  assert.match(root.querySelector('#cv-content').textContent, /Ingénieur en Cybersécurité/);
   assert.match(root.querySelector('#cv-content').textContent, /Année d’échange en école d’ingénieurs/);
   assert.match(root.querySelector('#cv-content').textContent, /Français — Bilingue/);
   assert.doesNotMatch(root.querySelector('#cv-content').textContent, /Exchange Year in Engineering/);
